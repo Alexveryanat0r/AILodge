@@ -1,0 +1,53 @@
+<!-- res/layout/popup_layout.xml -->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/rounded_background">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:gravity="center"
+        android:text="Кабинет №123"
+        android:textSize="@dimen/text_size_large" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Олимпиадное программирование в Нижнем:\nкак стать международным чемпионом"
+        android:textSize="@dimen/text_size_medium"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="\nПрограмма:\n17:30 - 18:00 Запуск площадки трансляции, сбор гостей\n
+        18:00 - 18:10 Приветственное слово советника губернатора по вопросам развития ИТ в регионе Валерия Черепенникова\n
+        18:10 - 19:00 Выступление спикеров\n
+        19:00 - 19:20 Вопросы зрителей\n
+        19:20 - 19:30 Завершение мероприятия, анонс будущих событий\n"
+        android:textSize="@dimen/text_size_small" />
+    <Button
+        android:id="@+id/button_open_website"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Узнать подробнее"
+        android:textSize="@dimen/text_size_small"
+        android:textColor="#fff"
+        android:background="@drawable/rounded_button"
+        android:layout_gravity="bottom" />
+    <View
+        android:id="@+id/dragView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+
+</LinearLayout>

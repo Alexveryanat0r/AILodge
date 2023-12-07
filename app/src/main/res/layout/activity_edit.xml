@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:paddingTop="8dp">
+    <LinearLayout
+        android:id="@+id/recyclerViewMessages"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/uidValueTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="fgfgfgdfdgfgdgdgdgd"
+            android:textSize="16sp"/>
+        <Button
+            android:id="@+id/buttonSave"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Сохранить" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textViewUniqueFeature"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/recyclerViewMessages"
+        android:text="@string/prompt_unique_feature"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"/>
+
+    <Spinner
+        android:id="@+id/spinnerUniqueFeature"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewUniqueFeature"
+        android:layout_marginBottom="16dp"
+        android:entries="@array/unique_feature_options"/>
+
+    <TextView
+        android:id="@+id/textViewEmotionalTone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/spinnerUniqueFeature"
+        android:text="@string/prompt_emotional_tone"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"/>
+
+    <Spinner
+        android:id="@+id/spinnerEmotionalTone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewEmotionalTone"
+        android:layout_marginBottom="16dp"
+        android:entries="@array/emotional_tone_options"/>
+
+    <TextView
+        android:id="@+id/textViewTargetAudience"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/spinnerEmotionalTone"
+        android:text="@string/prompt_target_audience"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"/>
+
+    <Spinner
+        android:id="@+id/spinnerTargetAudience"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewTargetAudience"
+        android:layout_marginBottom="16dp"
+        android:entries="@array/target_audience_options"/>
+
+    <TextView
+        android:id="@+id/textViewSeasonDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/spinnerTargetAudience"
+        android:text="@string/prompt_season_description"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"/>
+
+    <Spinner
+        android:id="@+id/spinnerSeasonDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewSeasonDescription"
+        android:layout_marginBottom="16dp"
+        android:entries="@array/season_description_options"/>
+
+    <TextView
+        android:id="@+id/textViewFormalityLevel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/spinnerSeasonDescription"
+        android:text="@string/prompt_formality_level"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"/>
+
+    <Spinner
+        android:id="@+id/spinnerFormalityLevel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewFormalityLevel"
+        android:layout_marginBottom="16dp"
+        android:entries="@array/formality_level_options"/>
+
+    <TextView
+        android:id="@+id/textViewMainColorAccent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/spinnerFormalityLevel"
+        android:text="@string/prompt_main_color_accent"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"/>
+
+    <Spinner
+        android:id="@+id/spinnerMainColorAccent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewMainColorAccent"
+        android:layout_marginBottom="16dp"
+        android:entries="@array/main_color_accent_options"/>
+
+    <TextView
+        android:id="@+id/textViewRoomTheme"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/spinnerMainColorAccent"
+        android:text="@string/prompt_room_theme"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"/>
+
+    <Spinner
+        android:id="@+id/spinnerRoomTheme"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewRoomTheme"
+        android:layout_marginBottom="16dp"
+        android:entries="@array/room_theme_options"/>
+
+    <TextView
+        android:id="@+id/textViewHighlightFeatures"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/spinnerRoomTheme"
+        android:text="@string/prompt_highlight_features"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"/>
+
+    <Spinner
+        android:id="@+id/spinnerHighlightFeatures"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewHighlightFeatures"
+        android:layout_marginBottom="16dp"
+        android:entries="@array/highlight_features_options"/>
+
+    <TextView
+        android:id="@+id/textViewNewEmotionalTone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/spinnerHighlightFeatures"
+        android:text="@string/prompt_new_emotional_tone"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"/>
+
+    <Spinner
+        android:id="@+id/spinnerNewEmotionalTone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewNewEmotionalTone"
+        android:layout_marginBottom="16dp"
+        android:entries="@array/new_emotional_tone_options"/>
+
+
+</RelativeLayout>

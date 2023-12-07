@@ -1,0 +1,94 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="button_1">Открыть всплывающее окно</string>
+    <string name="coffee">Заказать кофе</string>
+    <string name="close_button">X</string>
+
+        <!-- Промт: Выбери уникальную черту отеля -->
+        <string name="prompt_unique_feature">Выбери уникальную черту отеля:</string>
+        <string-array name="unique_feature_options">
+            <item>1. Историческая ценность</item>
+            <item>2. Уют и комфорт</item>
+            <item>3. Современные технологии</item>
+            <item>4. Экологичность</item>
+            <item>5. Исключительный сервис</item>
+        </string-array>
+
+        <!-- Промт: Выбери эмоциональный фон описания -->
+        <string name="prompt_emotional_tone">Определите эмоциональный фон описания:</string>
+        <string-array name="emotional_tone_options">
+            <item>1. Романтический</item>
+            <item>2. Дружелюбный</item>
+            <item>3. Престижный</item>
+            <item>4. Экзотический</item>
+            <item>5. Спокойный</item>
+        </string-array>
+
+        <!-- Промт: Опиши целевую аудиторию -->
+        <string name="prompt_target_audience">Для какой аудитории будет предназначено описание:</string>
+        <string-array name="target_audience_options">
+            <item>1. Путешественники по бизнесу</item>
+            <item>2. Семьи с детьми</item>
+            <item>3. Молодые путешественники</item>
+            <item>4. Пары влюбленных</item>
+            <item>5. Природолюбители</item>
+        </string-array>
+
+        <!-- Промт: Выбери время года в описании отеля -->
+        <string name="prompt_season_description">Какое время года представит описание отеля:</string>
+        <string-array name="season_description_options">
+            <item>1. Лето</item>
+            <item>2. Зима</item>
+            <item>3. Осень</item>
+            <item>4. Весна</item>
+            <item>5. На любое время года</item>
+        </string-array>
+
+        <!-- Промт: Оцени уровень формальности описания -->
+        <string name="prompt_formality_level">Определите уровень формальности описания:</string>
+        <string-array name="formality_level_options">
+            <item>1. Официальный</item>
+            <item>2. Неформальный</item>
+            <item>3. Средний</item>
+        </string-array>
+
+        <!-- Промт: Выбери основной цветовой акцент -->
+        <string name="prompt_main_color_accent">Выбери основной цвет, который будет преобладать в описании отеля:</string>
+        <string-array name="main_color_accent_options">
+            <item>1. Солнечно-желтый</item>
+            <item>2. Океанский голубой</item>
+            <item>3. Роскошный бордовый</item>
+            <item>4. Нежный персиковый</item>
+            <item>5. Свежий зеленый</item>
+        </string-array>
+
+        <!-- Промт: Выбери главную тему оформления номеров -->
+        <string name="prompt_room_theme">Определите основную тему оформления номеров:</string>
+        <string-array name="room_theme_options">
+            <item>1. Скандинавский минимализм</item>
+            <item>2. Экзотика Востока</item>
+            <item>3. Ретро стиль</item>
+            <item>4. Фьюжн современности и традиций</item>
+            <item>5. Эко-дизайн</item>
+        </string-array>
+
+        <!-- Промт: Подчеркни уникальные черты отеля -->
+        <string name="prompt_highlight_features">Подчеркни уникальные черты отеля. Текущие черты: [Текущие черты].</string>
+        <string-array name="highlight_features_options">
+            <item>1. Историческая ценность</item>
+            <item>2. Инновационные решения</item>
+            <item>3. Культурные особенности</item>
+            <item>4. Экологическая ответственность</item>
+            <item>5. Роскошные удобства</item>
+        </string-array>
+
+        <!-- Промт: Выбери новый эмоциональный фон -->
+        <string name="prompt_new_emotional_tone">Текущий эмоциональный фон: [Текущий эмоциональный фон]. Выбери новый:</string>
+        <string-array name="new_emotional_tone_options">
+            <item>1. Расслабленный и уютный</item>
+            <item>2. Динамичный и веселый</item>
+            <item>3. Элегантный и стильный</item>
+            <item>4. Загадочный и атмосферный</item>
+            <item>5. Современный и стильный</item>
+        </string-array>
+</resources>

@@ -1,0 +1,73 @@
+<!-- res/layout/activity_account.xml -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <!-- Аватарка пользователя -->
+    <FrameLayout
+        android:id="@+id/avatarFrameLayout"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/circle_shape"
+        android:clipToOutline="true">
+
+        <ImageView
+            android:id="@+id/avatarImageView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/default_avatar"
+            android:scaleType="centerCrop" />
+
+        <!-- Иконка карандаша (измените src на свою иконку) -->
+        <ImageView
+            android:id="@+id/editIcon"
+            android:layout_width="34dp"
+            android:layout_height="40dp"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="8dp"
+            android:src="@drawable/ic_edit"
+            android:onClick="openGallery"/>
+
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/usernameTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/avatarFrameLayout"
+        android:text="Ваш текст"
+        android:gravity="center"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="16dp"
+        android:layout_below="@id/usernameTextView"
+        />
+
+    <!-- Добавление кнопки "плюсик" в кружке -->
+    <ImageView
+        android:id="@+id/btnAddItem"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:src="@drawable/ic_add"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="16dp"
+
+        android:clickable="true"
+        android:onClick="showAddItemDialog"/>
+
+    <ImageView
+        android:id="@+id/outusers"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:src="@drawable/out"
+        android:layout_alignParentEnd="true"/>
+</RelativeLayout>
+

@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Полоска сверху -->
+    <LinearLayout
+        android:id="@+id/topBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/rounded_corners"
+        android:padding="8dp"
+        android:gravity="center_vertical">
+
+        <!-- Название приложения -->
+        <TextView
+            android:id="@+id/appName"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:text="AiLodge"
+            android:layout_marginRight="20dp"
+            android:textColor="#FFFFFF"
+            android:gravity="center"/>
+
+        <!-- Выбор города -->
+        <AutoCompleteTextView
+            android:id="@+id/cityAutoComplete"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Введите город"
+            android:layout_gravity="end"
+            android:gravity="center"/>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:layout_marginLeft="19dp"
+            android:layout_marginRight="19dp"
+            app:cardCornerRadius="16dp"
+            app:cardUseCompatPadding="true"
+            android:onClick="openUserProfile"
+            >
+
+            <ImageView
+                android:id="@+id/userAvatar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:src="@drawable/default_avatar"
+                android:onClick="openUserProfile"
+                />
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/smallPhotoRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/topBar"
+        android:padding="8dp" />
+
+    <LinearLayout
+        android:id="@+id/input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/smallPhotoRecyclerView"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/rounded_layout"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <AutoCompleteTextView
+            android:id="@+id/editTextHotel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Введите свой отель в городе"
+            android:inputType="text"
+            android:gravity="center"/>
+
+        <Button
+            android:id="@+id/btnGetDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Получить описание" />
+    </LinearLayout>
+
+    <View
+        android:layout_below="@id/input"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/rounded_layout" />
+
+
+    <LinearLayout
+        android:layout_below="@id/input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="16dp">
+
+        <TextView
+            android:id="@+id/history"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:gravity="center"
+            android:text="История запросов:"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewHistory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/history"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:padding="16dp"/>
+
+        <TextView
+            android:id="@+id/txtNotLoggedIn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Простите, вы не в аккаунте"
+            android:visibility="gone"
+            android:layout_gravity="center_horizontal" />
+
+        <Button
+            android:id="@+id/btnLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Войти"
+            android:visibility="gone"
+            android:layout_gravity="center_horizontal" />
+    </LinearLayout>
+
+</RelativeLayout>
