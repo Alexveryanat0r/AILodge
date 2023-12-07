@@ -2,6 +2,7 @@ package com.example.myapplication.deepl;
 
 import android.widget.TextView;
 
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
@@ -34,22 +35,30 @@ public class DeepLInteraction {
         requestDeepL = retrofit.create(RequestDeepL.class);
     }
 
-    public void Translate(String text, String outLang, TextView out) {
-        requestDeepL.getDeepL("Hello world!", "RU").enqueue(new Callback<DeepLData>() {
-            @Override
-            public void onResponse(Call<DeepLData> call, Response<DeepLData> response) {
-                out.setText(response.body().translations.get(0).text);
-            }
+    public void translate(String text, String outLang, DataResult res) throws IOException {
+        res.result = requestDeepL.getDeepL(text, outLang).execute().body().translations.get(0).text;
 
-            @Override
-            public void onFailure(Call<DeepLData> call, Throwable t) {
-                out.setText(t.getMessage());
-            }
-        });
+//        requestDeepL.getDeepL(text, outLang).enqueue(new Callback<DeepLData>() {
+//            @Override
+//            public void onResponse(Call<DeepLData> call, Response<DeepLData> response) {
+//                res.result = response.body().translations.get(0).text;
+////                targetOut.setText(response.body().translations.get(0).text);
+//            }
+//
+//            @Override
+//            public void onFailure(Call<DeepLData> call, Throwable t) {
+////                targetOut.setText(t.getMessage());
+//                res.result = t.getMessage();
+//            }
+//        });
     }
 
     interface RequestDeepL {
         @GET("/v2/translate?auth_key=946828e6-db14-c27b-0f57-ac7f85f32365:fx")
         Call<DeepLData> getDeepL(@Query("text") String text, @Query("target_lang") String target_lang);
     }
+}
+
+class DeeplResult {
+    public static String result = null;
 }

@@ -26,6 +26,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.IOException;
 import java.util.Objects;
 
 public class DetailActivity extends AppCompatActivity {
@@ -114,7 +115,13 @@ public class DetailActivity extends AppCompatActivity {
                 dessai.setText("generating...");
 //                dessai.setText(p1.toString());
 //                dessai.setText(p1.toString());
-                Lama.Write(nameHotelTextView.getText().toString(), dessai);
+                try {
+                    Lama.Write(nameHotelTextView.getText().toString(), dessai);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 

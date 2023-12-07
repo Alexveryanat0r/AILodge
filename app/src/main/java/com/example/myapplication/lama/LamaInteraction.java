@@ -13,7 +13,10 @@ import androidx.core.app.NotificationCompat;
 import com.deepl.api.TextResult;
 import com.example.myapplication.MainActivity;
 import com.example.myapplication.R;
+import com.example.myapplication.deepl.DataResult;
+import com.example.myapplication.deepl.DeepLInteraction;
 
+import java.io.IOException;
 import java.util.concurrent.Callable;
 import java.util.concurrent.TimeUnit;
 
@@ -71,34 +74,65 @@ public class LamaInteraction {
         this.stream = stream;
     }
 
-    public void Write(String message, TextView targetOut) {
-        RequestPost data = new RequestPost(temperature, max_tokens, stream, prompt, message);
+    public void Write(String message, TextView targetOut) throws IOException, InterruptedException {
+        DeepLInteraction deepl = new DeepLInteraction();
+
+        DataResult res1 = new DataResult();
+        DataResult res2 = new DataResult();
+
+        Thread t1 = new Thread() {
+            public void run() {
+                try {
+                    deepl.translate(message.toString(), "EN", res1);
+                    deepl.translate(prompt.toString(), "EN", res2);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+
+
+            }
+        };
+        t1.start();
+        t1.join();
+
+//        targetOut.setText(res2.result);
+
+
+        StaticPrompt en_prompt = new StaticPrompt(res1.result);
+        String en_message = res2.result;
+
+        RequestPost data = new RequestPost(temperature, max_tokens, stream, en_prompt, en_message);
 
         requestLama.postMessage(data).enqueue(new Callback<ResponseData>() {
             final TextView out = targetOut;
             @RequiresApi(api = Build.VERSION_CODES.S)
             @Override
             public void onResponse(Call<ResponseData> call, Response<ResponseData> response) {
-
-
                 String lamaSay = response.body().choices.get(0).message.content;
 
-//                TextResult result = lamaSay;
-//                try {
-//                    result = tr.translateText(lamaSay, null, "ru");
-//                } catch (DeepLException e) {
-//                    throw new RuntimeException(e);
-//                } catch (InterruptedException e) {
-//                    throw new RuntimeException(e);
-//                }
+                Thread t1 = new Thread() {
+                    public void run() {
+                        try {
+                            deepl.translate(lamaSay, "RU", res1);
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                };
+                t1.start();
+                try {
+                    t1.join();
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
 
 
-                out.setText(lamaSay);
-
-                NotificationCompat.Builder builder =  new NotificationCompat.Builder(context.getApplicationContext(), "channelID")
-                                .setSmallIcon(R.mipmap.ic_launcher)
-                                .setContentTitle("Описание составлено")
-                                .setContentText("Описание составлено2");
+                out.setText(res1.result);
+////
+//////                NotificationCompat.Builder builder =  new NotificationCompat.Builder(context.getApplicationContext(), "channelID")
+//////                                .setSmallIcon(R.mipmap.ic_launcher)
+//////                                .setContentTitle("Описание составлено")
+//////                                .setContentText("Описание составлено2");
             }
 
             @Override
