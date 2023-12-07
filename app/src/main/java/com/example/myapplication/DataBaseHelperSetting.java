@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
@@ -22,8 +23,37 @@ public class DataBaseHelperSetting extends SQLiteOpenHelper {
     private static final String COLUMN_HOTEL_NAME = "hotel_name";
     private static final String COL_CITY = "city";
 
+    private static final String TABLE_SETTINGS = "settings";
+    private static final String COLUMN_ID = "_id";
+    private static final String COLUMN_EMOTIONAL_TONE = "emotional_tone";
+    private static final String COLUMN_TARGET_AUDIENCE = "target_audience";
+    private static final String COLUMN_SEASON_DESCRIPTION = "season_description";
+    private static final String COLUMN_FORMALITY_LEVEL = "formality_level";
+    private static final String COLUMN_MAIN_COLOR_ACCENT = "main_color_accent";
+    private static final String COLUMN_HIGHLIGHT_FEATURES = "highlight_features";
+    private static final String COLUMN_NEW_EMOTIONAL_TONE = "new_emotional_tone";
+    private static final String COLUMN_PROMPT_ENEBLE = "prompt_eneble";
+    private static final String COLUMN_PROMPT_UNENEBLE = "prompt_uneneble";
+    private static final String COLUMN_UID = "uid";
+
+    // SQL-запрос для создания таблицы
+    private static final String CREATE_TABLE_SETTINGS =
+            "CREATE TABLE IF NOT EXISTS " + TABLE_SETTINGS + "(" +
+                    COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    COLUMN_UID + "TEXT, " +
+                    COLUMN_EMOTIONAL_TONE + " TEXT, " +
+                    COLUMN_TARGET_AUDIENCE + " TEXT, " +
+                    COLUMN_SEASON_DESCRIPTION + " TEXT, " +
+                    COLUMN_FORMALITY_LEVEL + " TEXT, " +
+                    COLUMN_MAIN_COLOR_ACCENT + " TEXT, " +
+                    COLUMN_HIGHLIGHT_FEATURES + " TEXT, " +
+                    COLUMN_NEW_EMOTIONAL_TONE + " TEXT, " +
+                    COLUMN_PROMPT_ENEBLE + " TEXT, " +
+                    COLUMN_PROMPT_UNENEBLE + " TEXT);";
+
     public DataBaseHelperSetting(Context context) {
         super(context, DB_NAME, null, 1);
+
         copyDataBase(context);
     }
 
@@ -67,15 +97,13 @@ public class DataBaseHelperSetting extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        // No implementation needed as the database already exists
+        db.execSQL(CREATE_TABLE_SETTINGS);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // Delete the old database
     }
-
-
 
     public List<String> getUniqueCities() {
         List<String> cities = new ArrayList<>();
@@ -104,7 +132,6 @@ public class DataBaseHelperSetting extends SQLiteOpenHelper {
 
         return cities;
     }
-
     public List<String> getHotelsInCity(String city) {
         List<String> hotels = new ArrayList<>();
 
@@ -130,8 +157,6 @@ public class DataBaseHelperSetting extends SQLiteOpenHelper {
 
         return hotels;
     }
-
-
     public boolean exists(String city, String hotel) {
         SQLiteDatabase db = this.getReadableDatabase();
         String[] columns = {COL_CITY};
@@ -143,7 +168,6 @@ public class DataBaseHelperSetting extends SQLiteOpenHelper {
         cursor.close();
         return result;
     }
-
     public String getLinkReservation(String hotelName, String cityName) {
         SQLiteDatabase db = this.getReadableDatabase();
         String[] columns = {"link_reservation"};
@@ -184,9 +208,6 @@ public class DataBaseHelperSetting extends SQLiteOpenHelper {
         cursor.close();
         return linkReservation;
     }
-
-
-
     public String getHotelInfo(String city, String hotel) {
         SQLiteDatabase db = this.getReadableDatabase();
         String[] columns = {"hotel_name", "city", "link_reservation", "description"};
@@ -315,7 +336,6 @@ public class DataBaseHelperSetting extends SQLiteOpenHelper {
         }
         return Id;
     }
-
     public String getHotelInfoById(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
         String[] columns = { "global_rate", "star", "description"};
@@ -346,23 +366,110 @@ public class DataBaseHelperSetting extends SQLiteOpenHelper {
 
         return result.toString();
     }
-
-
-
     public String getCombinedInfoForHotel(String hotelName, String city) {
         int hotelId = getIdByHotelNameAndCity(hotelName, city);
 
+        StringBuilder combinedInfo = new StringBuilder();
+
         // Example 1: Get hotel information
+        combinedInfo.append(getHotelInfoById(hotelId));
 
-        String combinedInfo = getHotelInfoById(hotelId) +
+        // Example 2: Get all convenience values
+        combinedInfo.append(getAllConvenienceValuesForHotel(hotelId));
+        combinedInfo.append("коментарии: ");
+        // Example 3: Get all thesis values
+        combinedInfo.append(getAllThesisForHotel(hotelId));
 
-                // Example 2: Get all convenience values
-                getAllConvenienceValuesForHotel(hotelId) +
-                "коментарии: " +
-                // Example 3: Get all thesis values
-                getAllThesisForHotel(hotelId);
-
-        return combinedInfo;
+        return combinedInfo.toString();
     }
+    public long addSettingsWithPrompts(String uid, String emotionalTone, String targetAudience, String seasonDescription, String formalityLevel, String mainColorAccent, String highlightFeatures, String newEmotionalTone, String promptEneble, String promptUneneble) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        // Проверяем, существует ли запись с таким же ID
+        String whereClause = COLUMN_UID + "=?";
+        String[] whereArgs = {uid};
+        Cursor cursor = db.query(TABLE_SETTINGS, null, whereClause, whereArgs, null, null, null);
+        boolean recordExists = cursor.moveToFirst();
+        cursor.close();
+
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_UID, uid);
+        values.put(COLUMN_EMOTIONAL_TONE, emotionalTone);
+        values.put(COLUMN_TARGET_AUDIENCE, targetAudience);
+        values.put(COLUMN_SEASON_DESCRIPTION, seasonDescription);
+        values.put(COLUMN_FORMALITY_LEVEL, formalityLevel);
+        values.put(COLUMN_MAIN_COLOR_ACCENT, mainColorAccent);
+        values.put(COLUMN_HIGHLIGHT_FEATURES, highlightFeatures);
+        values.put(COLUMN_NEW_EMOTIONAL_TONE, newEmotionalTone);
+        values.put(COLUMN_PROMPT_ENEBLE, promptEneble);
+        values.put(COLUMN_PROMPT_UNENEBLE, promptUneneble);
+
+        if (recordExists) {
+            long result = db.update(TABLE_SETTINGS, values, whereClause, whereArgs);
+            db.close();
+            return result;
+        } else {
+            long result = db.insertWithOnConflict(TABLE_SETTINGS, null, values, SQLiteDatabase.CONFLICT_REPLACE);
+            db.close();
+            return result;
+        }
+    }
+
+
+
+    public void getAllSettings() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_SETTINGS, null);
+
+        try {
+            if (cursor.moveToFirst()) {
+                do {
+                    // Извлекаем данные по столбцам
+                    int emotionalToneIndex = cursor.getColumnIndex(COLUMN_EMOTIONAL_TONE);
+                    String emotionalTone = (emotionalToneIndex != -1) ? cursor.getString(emotionalToneIndex) : "N/A";
+
+                    int targetAudienceIndex = cursor.getColumnIndex(COLUMN_TARGET_AUDIENCE);
+                    String targetAudience = (targetAudienceIndex != -1) ? cursor.getString(targetAudienceIndex) : "N/A";
+
+                    int seasonDescriptionIndex = cursor.getColumnIndex(COLUMN_SEASON_DESCRIPTION);
+                    String seasonDescription = (seasonDescriptionIndex != -1) ? cursor.getString(seasonDescriptionIndex) : "N/A";
+
+                    int formalityLevelIndex = cursor.getColumnIndex(COLUMN_FORMALITY_LEVEL);
+                    String formalityLevel = (formalityLevelIndex != -1) ? cursor.getString(formalityLevelIndex) : "N/A";
+
+                    int mainColorAccentIndex = cursor.getColumnIndex(COLUMN_MAIN_COLOR_ACCENT);
+                    String mainColorAccent = (mainColorAccentIndex != -1) ? cursor.getString(mainColorAccentIndex) : "N/A";
+
+                    int highlightFeaturesIndex = cursor.getColumnIndex(COLUMN_HIGHLIGHT_FEATURES);
+                    String highlightFeatures = (highlightFeaturesIndex != -1) ? cursor.getString(highlightFeaturesIndex) : "N/A";
+
+                    int newEmotionalToneIndex = cursor.getColumnIndex(COLUMN_NEW_EMOTIONAL_TONE);
+                    String newEmotionalTone = (newEmotionalToneIndex != -1) ? cursor.getString(newEmotionalToneIndex) : "N/A";
+
+                    int promptEnebleIndex = cursor.getColumnIndex(COLUMN_PROMPT_ENEBLE);
+                    String promptEneble = (promptEnebleIndex != -1) ? cursor.getString(promptEnebleIndex) : "N/A";
+
+                    int promptUnenebleIndex = cursor.getColumnIndex(COLUMN_PROMPT_UNENEBLE);
+                    String promptUneneble = (promptUnenebleIndex != -1) ? cursor.getString(promptUnenebleIndex) : "N/A";
+
+                    // Выводим данные в консоль
+                    System.out.println("Emotional Tone: " + emotionalTone);
+                    System.out.println("Target Audience: " + targetAudience);
+                    System.out.println("Season Description: " + seasonDescription);
+                    System.out.println("Formality Level: " + formalityLevel);
+                    System.out.println("Main Color Accent: " + mainColorAccent);
+                    System.out.println("Highlight Features: " + highlightFeatures);
+                    System.out.println("New Emotional Tone: " + newEmotionalTone);
+                    System.out.println("Prompt Eneble: " + promptEneble);
+                    System.out.println("Prompt Uneneble: " + promptUneneble);
+                    System.out.println("---------------------");
+                } while (cursor.moveToNext());
+            }
+        } finally {
+            cursor.close();
+            db.close();
+        }
+    }
+
 
 }

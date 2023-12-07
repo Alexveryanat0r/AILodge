@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 import android.content.Intent;
+import android.graphics.Path;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
@@ -50,13 +51,14 @@ public class DetailActivity extends AppCompatActivity {
         dessai.setMovementMethod(new ScrollingMovementMethod());
         nameHotelTextView.setMovementMethod(new ScrollingMovementMethod());
 
-        LamaInteraction Lama = new LamaInteraction(0.7f, 200, false, 60);
+        LamaInteraction Lama = new LamaInteraction(0.7f, 150, false, 60);
 
 
         DynamicPrompt_ p1 = new DynamicPrompt_();
         p1.addPrompt(DefaultPrompts.Classic);
-//        p1.addPrompt(TextStylePrompts.Bro);
-        p1.addPrompt(OptionsPrompts.mainTheme.build("Historical value"));
+        p1.addPrompt(TextStylePrompts.Bro);
+//        p1.addPrompt(OptionsPrompts.emotions.build("Serenity"));
+        p1.addPrompt(OptionsPrompts.seasons.build("Winter"));
 //        StaticPrompt p1 = new StaticPrompt("Below is an instruction that describes a task. Write a response that appropriately completes the request. Stick to an informal style, be sure to make jokes. Paste writing style with form. (You should apply irony), make jokes. Communicate in the language of a (semi-professional comic). With all of the above, your main task is to briefly describe the hotel. More IRONIC jokes and pranks.");
 //        StaticPrompt p2 = new StaticPrompt("Below is an instruction that describes a task. Write a response that appropriately completes the request. You should write in literary and poetic language using aphorisms. Add interesting, rare sentences, copying Tolstoy's style. You describe the hotel, make a brief excerpt with stick to the given style, VERY BRIEFLY AND SUCCINCTLY ");
 

@@ -3,50 +3,39 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
+    android:paddingRight="16dp"
+    android:paddingLeft="16dp"
+    android:paddingBottom="16dp"
     android:paddingTop="8dp">
     <LinearLayout
         android:id="@+id/recyclerViewMessages"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content">
         <TextView
             android:id="@+id/uidValueTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="fgfgfgdfdgfgdgdgdgd"
+            android:layout_marginTop="12dp"
+            android:text="Выбори свои настройки: "
             android:textSize="16sp"/>
-        <Button
-            android:id="@+id/buttonSave"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Сохранить" />
+
 
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/textViewUniqueFeature"
+    <Button
+        android:id="@+id/buttonSave"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/recyclerViewMessages"
-        android:text="@string/prompt_unique_feature"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="8dp"/>
+        android:text="Сохранить"
+        android:background="@drawable/rounded_button"
+        android:layout_alignParentEnd="true"
 
-    <Spinner
-        android:id="@+id/spinnerUniqueFeature"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/textViewUniqueFeature"
-        android:layout_marginBottom="16dp"
-        android:entries="@array/unique_feature_options"/>
+        />
 
     <TextView
         android:id="@+id/textViewEmotionalTone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/spinnerUniqueFeature"
+        android:layout_below="@id/recyclerViewMessages"
         android:text="@string/prompt_emotional_tone"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="8dp"/>
@@ -115,9 +104,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/spinnerFormalityLevel"
-        android:text="@string/prompt_main_color_accent"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="8dp"/>
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="@string/prompt_main_color_accent" />
 
     <Spinner
         android:id="@+id/spinnerMainColorAccent"
@@ -127,28 +116,12 @@
         android:layout_marginBottom="16dp"
         android:entries="@array/main_color_accent_options"/>
 
-    <TextView
-        android:id="@+id/textViewRoomTheme"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/spinnerMainColorAccent"
-        android:text="@string/prompt_room_theme"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="8dp"/>
-
-    <Spinner
-        android:id="@+id/spinnerRoomTheme"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/textViewRoomTheme"
-        android:layout_marginBottom="16dp"
-        android:entries="@array/room_theme_options"/>
 
     <TextView
         android:id="@+id/textViewHighlightFeatures"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/spinnerRoomTheme"
+        android:layout_below="@id/spinnerMainColorAccent"
         android:text="@string/prompt_highlight_features"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="8dp"/>
@@ -176,7 +149,47 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/textViewNewEmotionalTone"
         android:layout_marginBottom="16dp"
-        android:entries="@array/new_emotional_tone_options"/>
+        android:entries="@array/new_emotional_tone_options" />
+
+    <TextView
+        android:id="@+id/textViewprompt_eneble"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/spinnerNewEmotionalTone"
+        android:text="@string/prompt_eneble"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"/>
+
+    <EditText
+        android:id="@+id/editTextPromteneble"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+
+        android:layout_marginTop="8dp"
+        android:inputType="text"
+        android:text=""
+        android:layout_below="@id/textViewprompt_eneble"
+        />
+
+    <TextView
+        android:id="@+id/textViewprompt_uneneble"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editTextPromteneble"
+        android:text="@string/prompt_uneneble"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"/>
+
+    <EditText
+        android:id="@+id/editTextPromtuneneble"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="text"
+        android:layout_marginTop="8dp"
+        android:layout_below="@id/textViewprompt_uneneble"
+        android:text="" />
 
 
 </RelativeLayout>
