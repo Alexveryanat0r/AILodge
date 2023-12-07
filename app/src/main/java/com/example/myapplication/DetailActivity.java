@@ -69,8 +69,8 @@ public class DetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 dessai.setText("generating...");
-                dessai.setText(p1.toString());
-//                Lama.Write(nameHotelTextView.getText().toString(), dessai);
+//                dessai.setText(p1.toString());
+                Lama.Write(nameHotelTextView.getText().toString(), dessai);
             }
         });
 
