@@ -1,5 +1,6 @@
 package com.example.myapplication.lama;
 
+import android.content.Context;
 import android.os.Build;
 
 import com.deepl.api.DeepLException;
@@ -7,8 +8,11 @@ import com.deepl.api.Translator;
 import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
+import androidx.core.app.NotificationCompat;
 
 import com.deepl.api.TextResult;
+import com.example.myapplication.MainActivity;
+import com.example.myapplication.R;
 
 import java.util.concurrent.Callable;
 import java.util.concurrent.TimeUnit;
@@ -24,6 +28,7 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 public class LamaInteraction {
+    private Context context;
     private final OkHttpClient okHttpClient;
     private final Retrofit retrofit;
     private final RequestUser requestLama;
@@ -43,8 +48,9 @@ public class LamaInteraction {
         Call<ResponseData> postMessage(@Body RequestPost requestPost);
     }
 
-    public LamaInteraction(Translator transl, float temperature, int max_tokens, boolean stream, int timeout) {
+    public LamaInteraction(Context context, Translator transl, float temperature, int max_tokens, boolean stream, int timeout) {
         this.tr = transl;
+        this.context = context;
 
         this.okHttpClient = new OkHttpClient.Builder()
                 .connectTimeout(timeout, TimeUnit.MINUTES)
@@ -73,6 +79,8 @@ public class LamaInteraction {
             @RequiresApi(api = Build.VERSION_CODES.S)
             @Override
             public void onResponse(Call<ResponseData> call, Response<ResponseData> response) {
+
+
                 String lamaSay = response.body().choices.get(0).message.content;
 
 //                TextResult result = lamaSay;
@@ -86,6 +94,11 @@ public class LamaInteraction {
 
 
                 out.setText(lamaSay);
+
+                NotificationCompat.Builder builder =  new NotificationCompat.Builder(context.getApplicationContext(), "channelID")
+                                .setSmallIcon(R.mipmap.ic_launcher)
+                                .setContentTitle("Описание составлено")
+                                .setContentText("Описание составлено2");
             }
 
             @Override
