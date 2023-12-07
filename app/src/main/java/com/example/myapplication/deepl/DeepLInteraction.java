@@ -16,7 +16,7 @@ import retrofit2.http.Query;
 public class DeepLInteraction {
     private OkHttpClient okHttpClient;
     private Retrofit retrofit;
-    private com.example.testlama.RequestDeepL requestDeepL;
+    private RequestDeepL requestDeepL;
 
     public DeepLInteraction() {
         this.okHttpClient = new OkHttpClient.Builder()
@@ -31,7 +31,7 @@ public class DeepLInteraction {
                 .client(okHttpClient)
                 .build();
 
-        requestDeepL = retrofit.create(com.example.testlama.RequestDeepL.class);
+        requestDeepL = retrofit.create(RequestDeepL.class);
     }
 
     public void Translate(String text, String outLang, TextView out) {
