@@ -2,5 +2,5 @@ package com.example.myapplication.lama;
 
 public class UserOptions {
     public static String emotionalTone, targetAudience, seasonDescription, formalityLevel;
-    public static String mainColorAccent, highlightFeatures, newEmotionalTone, promptEneble, promptUneneble;
+    public static String mainColorAccent, highlightFeatures, promptEneble, promptUneneble;
 }

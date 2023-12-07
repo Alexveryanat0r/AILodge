@@ -1,7 +1,16 @@
 package com.example.myapplication.lama;
 
+import android.os.Build;
+
+import com.deepl.api.DeepLException;
+import com.deepl.api.Translator;
 import android.widget.TextView;
 
+import androidx.annotation.RequiresApi;
+
+import com.deepl.api.TextResult;
+
+import java.util.concurrent.Callable;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
@@ -24,6 +33,8 @@ public class LamaInteraction {
     private final int max_tokens;
     private final boolean stream;
 
+    private Translator tr;
+
     private interface RequestUser {
         @GET("/v1/models")
         Call<LamaDataList> getLamaInfo();
@@ -32,7 +43,9 @@ public class LamaInteraction {
         Call<ResponseData> postMessage(@Body RequestPost requestPost);
     }
 
-    public LamaInteraction(float temperature, int max_tokens, boolean stream, int timeout) {
+    public LamaInteraction(Translator transl, float temperature, int max_tokens, boolean stream, int timeout) {
+        this.tr = transl;
+
         this.okHttpClient = new OkHttpClient.Builder()
                 .connectTimeout(timeout, TimeUnit.MINUTES)
                 .writeTimeout(timeout, TimeUnit.MINUTES)
@@ -57,9 +70,22 @@ public class LamaInteraction {
 
         requestLama.postMessage(data).enqueue(new Callback<ResponseData>() {
             final TextView out = targetOut;
+            @RequiresApi(api = Build.VERSION_CODES.S)
             @Override
             public void onResponse(Call<ResponseData> call, Response<ResponseData> response) {
-                out.setText(response.body().choices.get(0).message.content);
+                String lamaSay = response.body().choices.get(0).message.content;
+
+                TextResult result;
+                try {
+                    result = tr.translateText(lamaSay, null, "ru");
+                } catch (DeepLException e) {
+                    throw new RuntimeException(e);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+
+
+                out.setText(result.getText());
             }
 
             @Override

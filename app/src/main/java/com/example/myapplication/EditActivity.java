@@ -2,9 +2,11 @@ package com.example.myapplication;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,16 +30,23 @@ public class EditActivity extends AppCompatActivity {
         spinnerTargetAudience = findViewById(R.id.spinnerTargetAudience);
         spinnerSeasonDescription = findViewById(R.id.spinnerSeasonDescription);
         spinnerFormalityLevel = findViewById(R.id.spinnerFormalityLevel);
-        spinnerMainColorAccent = findViewById(R.id.spinnerMainColorAccent);
         spinnerHighlightFeatures = findViewById(R.id.spinnerHighlightFeatures);
-        spinnerNewEmotionalTone = findViewById(R.id.spinnerNewEmotionalTone);
 
         // Инициализация всех EditText
         editTextPromteneble = findViewById(R.id.editTextPromteneble);
         editTextPromtuneneble = findViewById(R.id.editTextPromtuneneble);
 
-        // Создаем объект DatabaseHelper
-        databaseHelper = new DataBaseHelperSetting(this);
+        // Отображение текущих данных на странице.
+        spinnerEmotionalTone.setSelection(getIndex(spinnerEmotionalTone, UserOptions.emotionalTone));
+        spinnerTargetAudience.setSelection(getIndex(spinnerTargetAudience, UserOptions.targetAudience));
+        spinnerSeasonDescription.setSelection(getIndex(spinnerSeasonDescription, UserOptions.seasonDescription));
+        spinnerFormalityLevel.setSelection(getIndex(spinnerFormalityLevel, UserOptions.formalityLevel));
+        spinnerHighlightFeatures.setSelection(getIndex(spinnerHighlightFeatures, UserOptions.highlightFeatures));
+        editTextPromtuneneble.setText(UserOptions.promptUneneble);
+        editTextPromteneble.setText(UserOptions.promptEneble);
+
+//        // Создаем объект DatabaseHelper
+//        databaseHelper = new DataBaseHelperSetting(this);
 
         Button saveButton = findViewById(R.id.buttonSave);
         saveButton.setOnClickListener(new View.OnClickListener() {
@@ -54,13 +63,12 @@ public class EditActivity extends AppCompatActivity {
 //                String promptEneble = editTextPromteneble.getText().toString().trim();
 //                String promptUneneble = editTextPromtuneneble.getText().toString().trim();
 
-//                UserOptions.emotionalTone = spinnerEmotionalTone.getSelectedItem().toString();
+                UserOptions.emotionalTone = spinnerEmotionalTone.getSelectedItem().toString();
                 UserOptions.targetAudience = spinnerTargetAudience.getSelectedItem().toString();
                 UserOptions.seasonDescription = spinnerSeasonDescription.getSelectedItem().toString();
                 UserOptions.formalityLevel = spinnerFormalityLevel.getSelectedItem().toString();
-                UserOptions.mainColorAccent = spinnerMainColorAccent.getSelectedItem().toString();
                 UserOptions.highlightFeatures = spinnerHighlightFeatures.getSelectedItem().toString();
-                UserOptions.newEmotionalTone = spinnerNewEmotionalTone.getSelectedItem().toString();
+
                 UserOptions.promptEneble = editTextPromteneble.getText().toString();
                 UserOptions.promptUneneble = editTextPromtuneneble.getText().toString();
 
@@ -73,5 +81,14 @@ public class EditActivity extends AppCompatActivity {
 //                }
             }
         });
+    }
+
+    private int getIndex(Spinner spinner, String value) {
+        for (int i = 0; i < spinner.getCount(); i++) {
+            if (spinner.getItemAtPosition(i).equals(value)) {
+                return i;
+            }
+        }
+        return 0;
     }
 }
