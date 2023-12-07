@@ -1,4 +1,6 @@
-package com.example.myapplication.lama;
+package com.example.myapplication.lama.Filters;
+
+import com.example.myapplication.lama.StaticPrompt;
 
 public class TextStylePrompts {
     public static StaticPrompt Bro = new StaticPrompt("Use an informal communication style. Words like \"bro,\" and \"cool\". You do a brief description of the hotel, thesis and ((summary)). Interesting and informative BUT BRIEF. Use an informal communication style. (Words like \"bro,\" \"cool\")");
