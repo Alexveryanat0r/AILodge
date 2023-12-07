@@ -18,6 +18,7 @@ import com.example.myapplication.lama.DynamicPrompt_;
 import com.example.myapplication.lama.Filters.OptionsPrompts;
 import com.example.myapplication.lama.LamaInteraction;
 import com.example.myapplication.lama.Filters.TextStylePrompts;
+import com.example.myapplication.lama.UserOptions;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -51,12 +52,12 @@ public class DetailActivity extends AppCompatActivity {
         dessai.setMovementMethod(new ScrollingMovementMethod());
         nameHotelTextView.setMovementMethod(new ScrollingMovementMethod());
 
-        LamaInteraction Lama = new LamaInteraction(0.7f, 150, false, 60);
+        LamaInteraction Lama = new LamaInteraction(0.7f, 300, false, 60);
 
 
         DynamicPrompt_ p1 = new DynamicPrompt_();
         p1.addPrompt(DefaultPrompts.Classic);
-        p1.addPrompt(TextStylePrompts.Bro);
+        p1.addPrompt(TextStylePrompts.Joker);
 //        p1.addPrompt(OptionsPrompts.emotions.build("Serenity"));
         p1.addPrompt(OptionsPrompts.seasons.build("Winter"));
 //        StaticPrompt p1 = new StaticPrompt("Below is an instruction that describes a task. Write a response that appropriately completes the request. Stick to an informal style, be sure to make jokes. Paste writing style with form. (You should apply irony), make jokes. Communicate in the language of a (semi-professional comic). With all of the above, your main task is to briefly describe the hotel. More IRONIC jokes and pranks.");
@@ -71,8 +72,20 @@ public class DetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 dessai.setText("generating...");
+                String all_data = "Test";
+//                all_data += "emotionalTone " + UserOptions.emotionalTone + "\n";
+//                all_data += "formalityLevel " + UserOptions.formalityLevel + "\n";
+//                all_data += "highlightFeatures " + UserOptions.highlightFeatures + "\n";
+//                all_data += "newEmotionalTone " + UserOptions.newEmotionalTone + "\n";
+//                all_data += "promptEneble " + UserOptions.promptEneble + "\n";
+//                all_data += "mainColorAccent " + UserOptions.mainColorAccent + "\n";
+//                all_data += "targetAudience " + UserOptions.targetAudience + "\n";
+//                all_data += "promptUneneble " + UserOptions.promptUneneble + "\n";
+//                all_data += "seasonDescription " + UserOptions.seasonDescription + "\n";
+
+                dessai.setText(all_data);
 //                dessai.setText(p1.toString());
-                Lama.Write(nameHotelTextView.getText().toString(), dessai);
+//                Lama.Write(nameHotelTextView.getText().toString(), dessai);
             }
         });
 

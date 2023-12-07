@@ -9,6 +9,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.myapplication.lama.UserOptions;
+
 public class EditActivity extends AppCompatActivity {
     Spinner spinnerEmotionalTone, spinnerTargetAudience, spinnerSeasonDescription, spinnerFormalityLevel, spinnerMainColorAccent, spinnerHighlightFeatures, spinnerNewEmotionalTone;
 
@@ -51,6 +53,16 @@ public class EditActivity extends AppCompatActivity {
                 String newEmotionalTone = spinnerNewEmotionalTone.getSelectedItem().toString();
                 String promptEneble = editTextPromteneble.getText().toString().trim();
                 String promptUneneble = editTextPromtuneneble.getText().toString().trim();
+
+//                UserOptions.emotionalTone = spinnerEmotionalTone.getSelectedItem().toString();
+//                UserOptions.targetAudience = spinnerTargetAudience.getSelectedItem().toString();
+//                UserOptions.seasonDescription = spinnerSeasonDescription.getSelectedItem().toString();
+//                UserOptions.formalityLevel = spinnerFormalityLevel.getSelectedItem().toString();
+//                UserOptions.mainColorAccent = spinnerMainColorAccent.getSelectedItem().toString();
+//                UserOptions.highlightFeatures = spinnerHighlightFeatures.getSelectedItem().toString();
+//                UserOptions.newEmotionalTone = spinnerNewEmotionalTone.getSelectedItem().toString();
+//                UserOptions.promptEneble = editTextPromteneble.getText().toString().trim();
+//                UserOptions.promptUneneble = editTextPromtuneneble.getText().toString().trim();
 
                 long result = databaseHelper.addSettingsWithPrompts(uid,emotionalTone,targetAudience,seasonDescription,formalityLevel,mainColorAccent,highlightFeatures,newEmotionalTone,promptEneble,promptUneneble);
 
