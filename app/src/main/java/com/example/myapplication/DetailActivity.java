@@ -60,7 +60,7 @@ public class DetailActivity extends AppCompatActivity {
         String deeplapi = "946828e6-db14-c27b-0f57-ac7f85f32365:fx";
         Translator trans = new Translator(deeplapi);
 
-        LamaInteraction Lama = new LamaInteraction(trans, 0.7f, 150, false, 60);
+        LamaInteraction Lama = new LamaInteraction(trans, 0.7f, 200, false, 60);
 
 
 
@@ -92,6 +92,7 @@ public class DetailActivity extends AppCompatActivity {
                 }
 
                 if(!Objects.equals(UserOptions.promptUneneble, "") && !Objects.equals(UserOptions.promptUneneble, null)) {
+                    p1.addPrompt(OptionsPrompts.dontUseWords.buildt(UserOptions.promptUneneble));
 //                    p1.addPrompt(OptionsPrompts..build(UserOptions.promptUneneble));
                 }
 

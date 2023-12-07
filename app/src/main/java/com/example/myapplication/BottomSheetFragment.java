@@ -38,17 +38,17 @@ public class BottomSheetFragment extends DialogFragment implements HistoryAdapte
         }
     }
 
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.bottom_sheet_layout, container, false);
-        recyclerViewHistory = view.findViewById(R.id.recyclerViewHistory);
-        mDataBaseHelper = new DatabaseHelperLocal(requireContext());
-        setupHistoryAdapter();
-        populateHistory();
-
-        return view;
-    }
+//    @Nullable
+//    @Override
+//    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+//        View view = inflater.inflate(R.layout.bottom_sheet_layout, container, false);
+//        recyclerViewHistory = view.findViewById(R.id.recyclerViewHistory);
+//        mDataBaseHelper = new DatabaseHelperLocal(requireContext());
+//        setupHistoryAdapter();
+//        populateHistory();
+//
+//        return view;
+//    }
 
     @Override
     public void onStart() {

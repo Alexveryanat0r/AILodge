@@ -75,17 +75,17 @@ public class LamaInteraction {
             public void onResponse(Call<ResponseData> call, Response<ResponseData> response) {
                 String lamaSay = response.body().choices.get(0).message.content;
 
-                TextResult result;
-                try {
-                    result = tr.translateText(lamaSay, null, "ru");
-                } catch (DeepLException e) {
-                    throw new RuntimeException(e);
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
+//                TextResult result = lamaSay;
+//                try {
+//                    result = tr.translateText(lamaSay, null, "ru");
+//                } catch (DeepLException e) {
+//                    throw new RuntimeException(e);
+//                } catch (InterruptedException e) {
+//                    throw new RuntimeException(e);
+//                }
 
 
-                out.setText(result.getText());
+                out.setText(lamaSay);
             }
 
             @Override
