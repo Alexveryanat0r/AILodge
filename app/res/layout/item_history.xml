@@ -1,0 +1,25 @@
+<!-- res/layout/item_history.xml -->
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="8dp">
+
+    <ImageView
+        android:id="@+id/historyImageView"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true" />
+
+    <TextView
+        android:id="@+id/textViewHistory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_toEndOf="@id/historyImageView"
+        android:layout_centerVertical="true"
+        android:textSize="16sp"
+        android:textColor="#000"
+        android:background="?android:attr/selectableItemBackground"/>
+</RelativeLayout>

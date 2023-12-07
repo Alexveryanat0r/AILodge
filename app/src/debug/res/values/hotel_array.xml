@@ -1,0 +1,7 @@
+<resources>
+    <array name="hotel_array">
+        <item>Отель 1</item>
+        <item>Отель 2</item>
+        <item>Отель 3</item>
+    </array>
+</resources>

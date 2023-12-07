@@ -1,0 +1,7 @@
+<resources>
+    <array name="city_array">
+        <item>Город 1</item>
+        <item>Город 2</item>
+        <item>Город 3</item>
+    </array>
+</resources>

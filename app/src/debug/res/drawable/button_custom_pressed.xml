@@ -1,0 +1,15 @@
+<!-- res/drawable/button_custom_pressed.xml -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="true">
+        <shape android:shape="rectangle">
+            <corners android:radius="16dp" />
+            <solid android:color="#FFFFFF" /> <!-- Измените на желаемый цвет при нажатии, например, белый (#FFFFFF) -->
+        </shape>
+    </item>
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="16dp" />
+            <solid android:color="#03A9F4" />
+        </shape>
+    </item>
+</selector>
