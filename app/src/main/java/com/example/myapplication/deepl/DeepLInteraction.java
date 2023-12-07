@@ -37,20 +37,6 @@ public class DeepLInteraction {
 
     public void translate(String text, String outLang, DataResult res) throws IOException {
         res.result = requestDeepL.getDeepL(text, outLang).execute().body().translations.get(0).text;
-
-//        requestDeepL.getDeepL(text, outLang).enqueue(new Callback<DeepLData>() {
-//            @Override
-//            public void onResponse(Call<DeepLData> call, Response<DeepLData> response) {
-//                res.result = response.body().translations.get(0).text;
-////                targetOut.setText(response.body().translations.get(0).text);
-//            }
-//
-//            @Override
-//            public void onFailure(Call<DeepLData> call, Throwable t) {
-////                targetOut.setText(t.getMessage());
-//                res.result = t.getMessage();
-//            }
-//        });
     }
 
     interface RequestDeepL {
