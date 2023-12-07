@@ -1,5 +1,8 @@
 package com.example.myapplication;
 
+import static com.example.myapplication.lama.StaticPromptsPull.default_p;
+import static com.example.myapplication.lama.StaticPromptsPull.textStyle_Bro;
+
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -52,10 +55,11 @@ public class DetailActivity extends AppCompatActivity {
         nameHotelTextView.setMovementMethod(new ScrollingMovementMethod());
 
         LamaInteraction Lama = new LamaInteraction(0.7f, 300, false, 60);
-        StaticPrompt default_p = new StaticPrompt("Below is an instruction that describes a task. Write a response that appropriately completes the request.");
-        StaticPrompt textStyle_Bro = new StaticPrompt("Stick to an informal style, be sure to make jokes. Paste writing style with form. (You should apply irony), make jokes. Communicate in the language of a (semi-professional comic). With all of the above, your main task is to briefly describe the hotel. More IRONIC jokes and pranks.");
+
 
         DynamicPrompt_ p1 = new DynamicPrompt_();
+        p1.addPrompt(default_p);
+        p1.addPrompt(textStyle_Bro);
 //        StaticPrompt p1 = new StaticPrompt("Below is an instruction that describes a task. Write a response that appropriately completes the request. Stick to an informal style, be sure to make jokes. Paste writing style with form. (You should apply irony), make jokes. Communicate in the language of a (semi-professional comic). With all of the above, your main task is to briefly describe the hotel. More IRONIC jokes and pranks.");
 //        StaticPrompt p2 = new StaticPrompt("Below is an instruction that describes a task. Write a response that appropriately completes the request. You should write in literary and poetic language using aphorisms. Add interesting, rare sentences, copying Tolstoy's style. You describe the hotel, make a brief excerpt with stick to the given style, VERY BRIEFLY AND SUCCINCTLY ");
 

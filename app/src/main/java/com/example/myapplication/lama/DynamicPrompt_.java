@@ -25,7 +25,7 @@ public class DynamicPrompt_ implements Prompt {
     public String toString() {
         String result = "";
         for(int i = 0; i < prompts.size(); i++) {
-            result += prompts.toString() + " ";
+            result += prompts.get(i).toString() + " ";
         }
         result = result.substring(0, result.length() - 1);
 
