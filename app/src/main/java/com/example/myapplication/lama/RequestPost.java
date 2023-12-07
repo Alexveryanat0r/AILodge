@@ -90,7 +90,7 @@ public class RequestPost {
 
     public RequestPost(float temperature, int max_tokens, boolean stream, Prompt prompt, String message) {
         List<MessageClass> bf = new ArrayList<>();
-        bf.add(new MessageClass("system", prompt.getValue()));
+        bf.add(new MessageClass("system", prompt.toString()));
         bf.add(new MessageClass("user", message));
         this.messages = bf;
 

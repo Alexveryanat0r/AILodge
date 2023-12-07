@@ -13,7 +13,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.myapplication.lama.StaticPrompt;
+import com.example.myapplication.lama.DynamicPrompt_;
 import com.example.myapplication.lama.LamaInteraction;
 import com.example.myapplication.lama.StaticPrompt;
 import com.google.firebase.database.DataSnapshot;
@@ -52,10 +52,14 @@ public class DetailActivity extends AppCompatActivity {
         nameHotelTextView.setMovementMethod(new ScrollingMovementMethod());
 
         LamaInteraction Lama = new LamaInteraction(0.7f, 300, false, 60);
-        StaticPrompt p1 = new StaticPrompt("Below is an instruction that describes a task. Write a response that appropriately completes the request. Stick to an informal style, be sure to make jokes. Paste writing style with form. (You should apply irony), make jokes. Communicate in the language of a (semi-professional comic). With all of the above, your main task is to briefly describe the hotel. More IRONIC jokes and pranks.");
-        StaticPrompt p2 = new StaticPrompt("Below is an instruction that describes a task. Write a response that appropriately completes the request. You should write in literary and poetic language using aphorisms. Add interesting, rare sentences, copying Tolstoy's style. You describe the hotel, make a brief excerpt with stick to the given style, VERY BRIEFLY AND SUCCINCTLY ");
+        StaticPrompt default_p = new StaticPrompt("Below is an instruction that describes a task. Write a response that appropriately completes the request.");
+        StaticPrompt textStyle_Bro = new StaticPrompt("Stick to an informal style, be sure to make jokes. Paste writing style with form. (You should apply irony), make jokes. Communicate in the language of a (semi-professional comic). With all of the above, your main task is to briefly describe the hotel. More IRONIC jokes and pranks.");
 
-        Lama.setPrompt(p2);
+        DynamicPrompt_ p1 = new DynamicPrompt_();
+//        StaticPrompt p1 = new StaticPrompt("Below is an instruction that describes a task. Write a response that appropriately completes the request. Stick to an informal style, be sure to make jokes. Paste writing style with form. (You should apply irony), make jokes. Communicate in the language of a (semi-professional comic). With all of the above, your main task is to briefly describe the hotel. More IRONIC jokes and pranks.");
+//        StaticPrompt p2 = new StaticPrompt("Below is an instruction that describes a task. Write a response that appropriately completes the request. You should write in literary and poetic language using aphorisms. Add interesting, rare sentences, copying Tolstoy's style. You describe the hotel, make a brief excerpt with stick to the given style, VERY BRIEFLY AND SUCCINCTLY ");
+
+        Lama.setPrompt(p1);
 
 
 
