@@ -26,6 +26,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import org.w3c.dom.Text;
+
 import java.io.IOException;
 import java.util.Objects;
 
@@ -73,10 +75,19 @@ public class DetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 DynamicPrompt_ p1 = new DynamicPrompt_();
-                p1.addPrompt(DefaultPrompts.Classic);
-                p1.addPrompt(TextStylePrompts.Journalistic);
-//                p1.addPrompt(TextStylePrompts.Joker);
-//                p1.addPrompt(TextStylePrompts.Bro);
+
+                if (Objects.equals(UserOptions.mainStyle, "Формальный стиль") || Objects.equals(UserOptions.emotionalTone, null)) {
+                    p1.addPrompt(TextStylePrompts.Formal);
+                } else if (Objects.equals(UserOptions.mainStyle, "Публицистический стиль")) {
+                    p1.addPrompt(TextStylePrompts.Journalistic);
+                } else if (Objects.equals(UserOptions.mainStyle, "Комик-полупрофи")) {
+                    p1.addPrompt(TextStylePrompts.Joker);
+                } else if (Objects.equals(UserOptions.mainStyle, "Менее поэтичный публицистический стиль")) {
+                    p1.addPrompt(TextStylePrompts.JournalisticDown);
+                } else if (Objects.equals(UserOptions.mainStyle, "Крайне неформально-молодёжный стиль")) {
+                    p1.addPrompt(TextStylePrompts.Bro);
+                }
+
                 if(!Objects.equals(UserOptions.emotionalTone, "Нет") && !Objects.equals(UserOptions.emotionalTone, null)) {
                     p1.addPrompt(OptionsPrompts.emotions.build(UserOptions.emotionalTone));
                 }
@@ -102,20 +113,13 @@ public class DetailActivity extends AppCompatActivity {
                     p1.addPrompt(OptionsPrompts.audience.build(UserOptions.targetAudience));
                 }
 
-                if(!Objects.equals(UserOptions.seasonDescription, "Нет") && !Objects.equals(UserOptions.seasonDescription, null)) {
-                    p1.addPrompt(OptionsPrompts.seasons.build(UserOptions.seasonDescription));
-                }
-
 //
 //                p1.addPrompt(TextStylePrompts.Joker);
 //                p1.addPrompt(OptionsPrompts.seasons.build("Winter"));
 
                 Lama.setPrompt(p1);
-
-                dessai.setText("generating...");
-//                dessai.setText(p1.toString());
-//                dessai.setText(p1.toString());
                 try {
+                    dessai.setText("generating...");
                     Lama.Write(nameHotelTextView.getText().toString(), dessai);
                 } catch (IOException e) {
                     throw new RuntimeException(e);

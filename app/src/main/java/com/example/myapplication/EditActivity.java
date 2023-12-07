@@ -14,7 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.myapplication.lama.UserOptions;
 
 public class EditActivity extends AppCompatActivity {
-    Spinner spinnerEmotionalTone, spinnerTargetAudience, spinnerSeasonDescription, spinnerFormalityLevel, spinnerMainColorAccent, spinnerHighlightFeatures, spinnerNewEmotionalTone;
+    Spinner spinnerEmotionalTone, spinnerTargetAudience, spinnerMainStyle, spinnerFormalityLevel, spinnerHighlightFeatures;
 
     EditText editTextPromteneble, editTextPromtuneneble;
     DataBaseHelperSetting databaseHelper;
@@ -28,20 +28,20 @@ public class EditActivity extends AppCompatActivity {
         // Инициализация всех Spinner
         spinnerEmotionalTone = findViewById(R.id.spinnerEmotionalTone);
         spinnerTargetAudience = findViewById(R.id.spinnerTargetAudience);
-        spinnerSeasonDescription = findViewById(R.id.spinnerSeasonDescription);
         spinnerFormalityLevel = findViewById(R.id.spinnerFormalityLevel);
         spinnerHighlightFeatures = findViewById(R.id.spinnerHighlightFeatures);
+        spinnerMainStyle = findViewById(R.id.spinnerMainStyle);
 
         // Инициализация всех EditText
         editTextPromteneble = findViewById(R.id.editTextPromteneble);
         editTextPromtuneneble = findViewById(R.id.editTextPromtuneneble);
 
         // Отображение текущих данных на странице.
+        spinnerHighlightFeatures.setSelection(getIndex(spinnerHighlightFeatures, UserOptions.highlightFeatures));
         spinnerEmotionalTone.setSelection(getIndex(spinnerEmotionalTone, UserOptions.emotionalTone));
         spinnerTargetAudience.setSelection(getIndex(spinnerTargetAudience, UserOptions.targetAudience));
-        spinnerSeasonDescription.setSelection(getIndex(spinnerSeasonDescription, UserOptions.seasonDescription));
         spinnerFormalityLevel.setSelection(getIndex(spinnerFormalityLevel, UserOptions.formalityLevel));
-        spinnerHighlightFeatures.setSelection(getIndex(spinnerHighlightFeatures, UserOptions.highlightFeatures));
+        spinnerMainStyle.setSelection(getIndex(spinnerMainStyle, UserOptions.mainStyle));
         editTextPromtuneneble.setText(UserOptions.promptUneneble);
         editTextPromteneble.setText(UserOptions.promptEneble);
 
@@ -53,21 +53,11 @@ public class EditActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Получаем значения из Spinner и EditText
-//                String emotionalTone = spinnerEmotionalTone.getSelectedItem().toString();
-//                String targetAudience = spinnerTargetAudience.getSelectedItem().toString();
-//                String seasonDescription = spinnerSeasonDescription.getSelectedItem().toString();
-//                String formalityLevel = spinnerFormalityLevel.getSelectedItem().toString();
-//                String mainColorAccent = spinnerMainColorAccent.getSelectedItem().toString();
-//                String highlightFeatures = spinnerHighlightFeatures.getSelectedItem().toString();
-//                String newEmotionalTone = spinnerNewEmotionalTone.getSelectedItem().toString();
-//                String promptEneble = editTextPromteneble.getText().toString().trim();
-//                String promptUneneble = editTextPromtuneneble.getText().toString().trim();
-
                 UserOptions.emotionalTone = spinnerEmotionalTone.getSelectedItem().toString();
                 UserOptions.targetAudience = spinnerTargetAudience.getSelectedItem().toString();
-                UserOptions.seasonDescription = spinnerSeasonDescription.getSelectedItem().toString();
                 UserOptions.formalityLevel = spinnerFormalityLevel.getSelectedItem().toString();
                 UserOptions.highlightFeatures = spinnerHighlightFeatures.getSelectedItem().toString();
+                UserOptions.mainStyle = spinnerMainStyle.getSelectedItem().toString();
 
                 UserOptions.promptEneble = editTextPromteneble.getText().toString();
                 UserOptions.promptUneneble = editTextPromtuneneble.getText().toString();

@@ -4,6 +4,15 @@
     <string name="coffee">Заказать кофе</string>
     <string name="close_button">X</string>
 
+            <string name="prompt_main_style">Главный стиль текста</string>
+            <string-array name="main_style_options">
+                <item>Формальный стиль</item>
+                <item>Публицистический стиль</item>
+                <item>Комик-полупрофи</item>
+                <item>Менее поэтичный публицистический стиль</item>
+                <item>Крайне неформально-молодёжный стиль</item>
+            </string-array>
+
         <!-- Промт: Выбери эмоциональный фон описания -->
             <string name="prompt_emotional_tone">Определите эмоциональный фон описания:</string>
             <string-array name="emotional_tone_options">
