@@ -44,33 +44,33 @@ public class EditActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Получаем значения из Spinner и EditText
-                String emotionalTone = spinnerEmotionalTone.getSelectedItem().toString();
-                String targetAudience = spinnerTargetAudience.getSelectedItem().toString();
-                String seasonDescription = spinnerSeasonDescription.getSelectedItem().toString();
-                String formalityLevel = spinnerFormalityLevel.getSelectedItem().toString();
-                String mainColorAccent = spinnerMainColorAccent.getSelectedItem().toString();
-                String highlightFeatures = spinnerHighlightFeatures.getSelectedItem().toString();
-                String newEmotionalTone = spinnerNewEmotionalTone.getSelectedItem().toString();
-                String promptEneble = editTextPromteneble.getText().toString().trim();
-                String promptUneneble = editTextPromtuneneble.getText().toString().trim();
+//                String emotionalTone = spinnerEmotionalTone.getSelectedItem().toString();
+//                String targetAudience = spinnerTargetAudience.getSelectedItem().toString();
+//                String seasonDescription = spinnerSeasonDescription.getSelectedItem().toString();
+//                String formalityLevel = spinnerFormalityLevel.getSelectedItem().toString();
+//                String mainColorAccent = spinnerMainColorAccent.getSelectedItem().toString();
+//                String highlightFeatures = spinnerHighlightFeatures.getSelectedItem().toString();
+//                String newEmotionalTone = spinnerNewEmotionalTone.getSelectedItem().toString();
+//                String promptEneble = editTextPromteneble.getText().toString().trim();
+//                String promptUneneble = editTextPromtuneneble.getText().toString().trim();
 
 //                UserOptions.emotionalTone = spinnerEmotionalTone.getSelectedItem().toString();
-//                UserOptions.targetAudience = spinnerTargetAudience.getSelectedItem().toString();
-//                UserOptions.seasonDescription = spinnerSeasonDescription.getSelectedItem().toString();
-//                UserOptions.formalityLevel = spinnerFormalityLevel.getSelectedItem().toString();
-//                UserOptions.mainColorAccent = spinnerMainColorAccent.getSelectedItem().toString();
-//                UserOptions.highlightFeatures = spinnerHighlightFeatures.getSelectedItem().toString();
-//                UserOptions.newEmotionalTone = spinnerNewEmotionalTone.getSelectedItem().toString();
-//                UserOptions.promptEneble = editTextPromteneble.getText().toString().trim();
-//                UserOptions.promptUneneble = editTextPromtuneneble.getText().toString().trim();
+                UserOptions.targetAudience = spinnerTargetAudience.getSelectedItem().toString();
+                UserOptions.seasonDescription = spinnerSeasonDescription.getSelectedItem().toString();
+                UserOptions.formalityLevel = spinnerFormalityLevel.getSelectedItem().toString();
+                UserOptions.mainColorAccent = spinnerMainColorAccent.getSelectedItem().toString();
+                UserOptions.highlightFeatures = spinnerHighlightFeatures.getSelectedItem().toString();
+                UserOptions.newEmotionalTone = spinnerNewEmotionalTone.getSelectedItem().toString();
+                UserOptions.promptEneble = editTextPromteneble.getText().toString();
+                UserOptions.promptUneneble = editTextPromtuneneble.getText().toString();
 
-                long result = databaseHelper.addSettingsWithPrompts(uid,emotionalTone,targetAudience,seasonDescription,formalityLevel,mainColorAccent,highlightFeatures,newEmotionalTone,promptEneble,promptUneneble);
+//                long result = databaseHelper.addSettingsWithPrompts(uid,emotionalTone,targetAudience,seasonDescription,formalityLevel,mainColorAccent,highlightFeatures,newEmotionalTone,promptEneble,promptUneneble);
 
-                if (result != -1) {
-                    Toast.makeText(EditActivity.this, "Данные успешно сохранены в базе данных", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(EditActivity.this, "Ошибка при сохранении данных в базе данных", Toast.LENGTH_SHORT).show();
-                }
+//                if (result != -1) {
+//                    Toast.makeText(EditActivity.this, "Данные успешно сохранены в базе данных", Toast.LENGTH_SHORT).show();
+//                } else {
+//                    Toast.makeText(EditActivity.this, "Ошибка при сохранении данных в базе данных", Toast.LENGTH_SHORT).show();
+//                }
             }
         });
     }

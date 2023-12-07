@@ -25,6 +25,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Objects;
+
 public class DetailActivity extends AppCompatActivity {
     private String uid;
     private TextView nameTextView;
@@ -38,6 +40,8 @@ public class DetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
+
+
 
         // Retrieve uid from Intent
         uid = getIntent().getStringExtra("uid");
@@ -72,7 +76,8 @@ public class DetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 dessai.setText("generating...");
-                String all_data = "Test";
+//                String all_data = "";
+//
 //                all_data += "emotionalTone " + UserOptions.emotionalTone + "\n";
 //                all_data += "formalityLevel " + UserOptions.formalityLevel + "\n";
 //                all_data += "highlightFeatures " + UserOptions.highlightFeatures + "\n";
@@ -80,12 +85,12 @@ public class DetailActivity extends AppCompatActivity {
 //                all_data += "promptEneble " + UserOptions.promptEneble + "\n";
 //                all_data += "mainColorAccent " + UserOptions.mainColorAccent + "\n";
 //                all_data += "targetAudience " + UserOptions.targetAudience + "\n";
-//                all_data += "promptUneneble " + UserOptions.promptUneneble + "\n";
+//                all_data += "promptUneneble " + String.valueOf(Objects.equals(UserOptions.promptUneneble, "")) + "\n";
 //                all_data += "seasonDescription " + UserOptions.seasonDescription + "\n";
-
-                dessai.setText(all_data);
+//
+//                dessai.setText(all_data);
 //                dessai.setText(p1.toString());
-//                Lama.Write(nameHotelTextView.getText().toString(), dessai);
+                Lama.Write(nameHotelTextView.getText().toString(), dessai);
             }
         });
 
