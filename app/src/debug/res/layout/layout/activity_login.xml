@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/rounded_layout"
+    android:padding="16dp"
+    tools:context=".LoginDialog">
+
+    <EditText
+        android:id="@+id/etEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Email"
+        android:gravity="center"
+        android:inputType="textEmailAddress"
+        android:layout_marginBottom="16dp" />
+
+    <EditText
+        android:id="@+id/etPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:gravity="center"
+        android:layout_below="@+id/etEmail"
+        android:layout_marginBottom="16dp" />
+
+    <Button
+        android:id="@+id/btnLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Войти"
+        android:gravity="center"
+        android:background="@drawable/rounded_button"
+        android:layout_below="@+id/etPassword" />
+    <Button
+        android:id="@+id/Regist"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Зарегистрироваться"
+        android:gravity="center"
+        android:background="#00ffffff"
+        android:layout_below="@+id/btnLogin"
+        />
+</RelativeLayout>

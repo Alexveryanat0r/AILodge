@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#00FFFFFF</color>
+    <color name="colorPrimaryDark">#00FFFFFF</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="colorCurrentUserMessageBackground">#4CAF50</color> <!-- Зеленый цвет для фона сообщения от текущего пользователя -->
+    <color name="colorOtherUserMessageBackground">#2196F3</color> <!-- Синий цвет для фона сообщения от другого пользователя -->
+
+</resources>
