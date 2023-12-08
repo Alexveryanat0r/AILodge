@@ -12,5 +12,5 @@ public class OptionsPrompts {
     public static BuilderOption descriptionStyle = new BuilderOption("Given the above context, your descriptive style is ((*))");
     public static BuilderOption readerNamedLike = new BuilderOption("Address the user as (*)");
     public static BuilderOption dontUseWords = new BuilderOption("(((Don't use those words: ");
-    public static BuilderOption useWords = new BuilderOption("(((Use those words: ");
+    public static BuilderOption useWords = new BuilderOption("((Use those words: ");
 }

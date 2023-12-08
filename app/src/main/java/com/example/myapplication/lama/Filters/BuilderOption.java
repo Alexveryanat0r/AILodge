@@ -22,6 +22,19 @@ public class BuilderOption{
         }
 
         result += String.join(", ", arr);
+        result += ")))";
+
+        return new StaticPrompt(result);
+    }
+
+    public StaticPrompt buildt2(String value) {
+        String result = option.toString();
+        String[] arr = value.split(", ");
+        for(int i = 0; i < arr.length; i++) {
+            arr[i] = "{" + arr[i] + "}";
+        }
+
+        result += String.join(", ", arr);
         result += "))";
 
         return new StaticPrompt(result);
