@@ -101,6 +101,8 @@ public class LamaInteraction {
         StaticPrompt en_prompt = new StaticPrompt(res1.result);
         String en_message = res2.result;
 
+
+
         RequestPost data = new RequestPost(temperature, max_tokens, stream, en_prompt, en_message);
 
         requestLama.postMessage(data).enqueue(new Callback<ResponseData>() {
@@ -128,11 +130,11 @@ public class LamaInteraction {
 
 
                 out.setText(res1.result);
-////
-//////                NotificationCompat.Builder builder =  new NotificationCompat.Builder(context.getApplicationContext(), "channelID")
-//////                                .setSmallIcon(R.mipmap.ic_launcher)
-//////                                .setContentTitle("Описание составлено")
-//////                                .setContentText("Описание составлено2");
+
+//                NotificationCompat.Builder builder =  new NotificationCompat.Builder(context.getApplicationContext(), "channelID")
+//                                .setSmallIcon(R.mipmap.ic_launcher)
+//                                .setContentTitle("Описание составлено")
+//                                .setContentText("Описание составлено2");
             }
 
             @Override

@@ -180,6 +180,9 @@ public class MainActivity extends AppCompatActivity implements SmallPhotoAdapter
         btnGetDescription.setOnClickListener(v -> {
             String enteredCity = cityAutoComplete.getText().toString();
             String hotel = editTextHotel.getText().toString();
+
+            HotelData.name = hotel;
+            HotelData.city = enteredCity;
             performCitySearch(enteredCity, hotel);
 
         });

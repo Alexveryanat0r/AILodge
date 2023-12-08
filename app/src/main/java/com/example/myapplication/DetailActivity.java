@@ -60,17 +60,18 @@ public class DetailActivity extends AppCompatActivity {
         dessai.setMovementMethod(new ScrollingMovementMethod());
         nameHotelTextView.setMovementMethod(new ScrollingMovementMethod());
 
+
         String deeplapi = "946828e6-db14-c27b-0f57-ac7f85f32365:fx";
         Translator trans = new Translator(deeplapi);
 
         LamaInteraction Lama = new LamaInteraction(this, trans, 0.7f, 200, false, 60);
 
-
-
-//        StaticPrompt p1 = new StaticPrompt("Below is an instruction that describes a task. Write a response that appropriately completes the request. Stick to an informal style, be sure to make jokes. Paste writing style with form. (You should apply irony), make jokes. Communicate in the language of a (semi-professional comic). With all of the above, your main task is to briefly describe the hotel. More IRONIC jokes and pranks.");
-//        StaticPrompt p2 = new StaticPrompt("Below is an instruction that describes a task. Write a response that appropriately completes the request. You should write in literary and poetic language using aphorisms. Add interesting, rare sentences, copying Tolstoy's style. You describe the hotel, make a brief excerpt with stick to the given style, VERY BRIEFLY AND SUCCINCTLY ");
-
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Generation").child(uid);
+
+        DataBaseHelperSetting db_helper = new DataBaseHelperSetting(this);
+        HotelData.ID = db_helper.getIdByHotelNameAndCity(HotelData.name, HotelData.city);
+        String combinated_hotel_info = db_helper.getCombinedInfoForHotel(HotelData.name, HotelData.city);
+
         regenButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -101,6 +102,7 @@ public class DetailActivity extends AppCompatActivity {
                 }
 
                 if(!Objects.equals(UserOptions.promptEneble, "") && !Objects.equals(UserOptions.promptEneble, null)) {
+                    p1.addPrompt(OptionsPrompts.useWords.buildt(UserOptions.promptEneble));
 //                    p1.addPrompt(OptionsPrompts..build(UserOptions.promptEneble));
                 }
 
@@ -120,6 +122,9 @@ public class DetailActivity extends AppCompatActivity {
                 Lama.setPrompt(p1);
                 try {
                     dessai.setText("generating...");
+                    String lama_req = combinated_hotel_info + nameHotelTextView.getText().toString();
+//                    dessai.setText(lama_req);
+
                     Lama.Write(nameHotelTextView.getText().toString(), dessai);
                 } catch (IOException e) {
                     throw new RuntimeException(e);

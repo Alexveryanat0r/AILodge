@@ -210,7 +210,8 @@ public class DataBaseHelperSetting extends SQLiteOpenHelper {
     }
     public String getHotelInfo(String city, String hotel) {
         SQLiteDatabase db = this.getReadableDatabase();
-        String[] columns = {"hotel_name", "city", "link_reservation", "description"};
+//        String[] columns = {"hotel_name", "city", "link_reservation", "description"};
+        String[] columns = {"hotel_name", "city", "link_reservation"};
         String selection = "hotel_name=? AND city=?";
         String[] selectionArgs = {hotel, city};
 
@@ -222,18 +223,18 @@ public class DataBaseHelperSetting extends SQLiteOpenHelper {
             int hotelIndex = cursor.getColumnIndex("hotel_name");
             int cityIndex = cursor.getColumnIndex("city");
             int linkIndex = cursor.getColumnIndex("link_reservation");
-            int descIndex = cursor.getColumnIndex("description");
+//            int descIndex = cursor.getColumnIndex("description");
 
             do {
                 String hotelName = cursor.getString(hotelIndex);
                 String cityName = cursor.getString(cityIndex);
                 String linkReservation = cursor.getString(linkIndex);
-                String description = cursor.getString(descIndex);
+//                String description = cursor.getString(descIndex);
 
                 result.append("Hotel: ").append(hotelName).append("\n");
                 result.append("City: ").append(cityName).append("\n");
                 result.append("Reservation Link: ").append(linkReservation).append("\n");
-                result.append("Description: ").append(description).append("\n\n");
+//                result.append("Description: ").append(description).append("\n\n");
             } while (cursor.moveToNext());
         }
 
@@ -326,7 +327,7 @@ public class DataBaseHelperSetting extends SQLiteOpenHelper {
         String[] selectionArgs = {hotelName, city};
 
         Cursor cursor = db.query("info", columns, selection, selectionArgs, null, null, null);
-
+//
         StringBuilder result = new StringBuilder();
         int Id = -1;
         if (cursor.moveToFirst()) {
@@ -366,13 +367,47 @@ public class DataBaseHelperSetting extends SQLiteOpenHelper {
 
         return result.toString();
     }
+
+    public String getHotelInfoByIdWithoutDess(int id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String[] columns = { "hotel_name, global_rate", "star"};
+        String selection = "ID=?";
+        String[] selectionArgs = {String.valueOf(id)};
+
+        Cursor cursor = db.query("info", columns, selection, selectionArgs, null, null, null);
+
+        StringBuilder result = new StringBuilder();
+
+        if (cursor.moveToFirst()) {
+            int hotel_name = cursor.getColumnIndex("hotel_name");
+            int globalRateIndex = cursor.getColumnIndex("global_rate");
+            int starIndex = cursor.getColumnIndex("star");
+
+            do {
+                String name = cursor.getString(hotel_name);
+                float globalRate = cursor.getFloat(globalRateIndex);
+                int star = cursor.getInt(starIndex);
+
+                result.append("Hotel name: ").append(name).append("\n");
+                result.append("Global Rate: ").append(globalRate).append("\n");
+                result.append("Star: ").append(star).append("\n\n");
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+
+        return result.toString();
+    }
+
+
     public String getCombinedInfoForHotel(String hotelName, String city) {
         int hotelId = getIdByHotelNameAndCity(hotelName, city);
 
         StringBuilder combinedInfo = new StringBuilder();
 
         // Example 1: Get hotel information
-        combinedInfo.append(getHotelInfoById(hotelId));
+        combinedInfo.append(getHotelInfoByIdWithoutDess(hotelId));
+
 
         // Example 2: Get all convenience values
         combinedInfo.append(getAllConvenienceValuesForHotel(hotelId));

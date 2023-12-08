@@ -69,6 +69,8 @@ public class EditActivity extends AppCompatActivity {
 //                } else {
 //                    Toast.makeText(EditActivity.this, "Ошибка при сохранении данных в базе данных", Toast.LENGTH_SHORT).show();
 //                }
+
+                EditActivity.super.onBackPressed();
             }
         });
     }
