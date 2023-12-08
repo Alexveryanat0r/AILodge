@@ -64,7 +64,7 @@ public class DetailActivity extends AppCompatActivity {
         String deeplapi = "946828e6-db14-c27b-0f57-ac7f85f32365:fx";
         Translator trans = new Translator(deeplapi);
 
-        LamaInteraction Lama = new LamaInteraction(this, trans, 0.7f, 200, false, 60);
+        LamaInteraction Lama = new LamaInteraction(this, trans, 0.7f, 210, false, 60);
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Generation").child(uid);
 
